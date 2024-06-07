@@ -1,8 +1,9 @@
 FROM maven:3.6.1-jdk-8-slim AS build
 RUN mkdir -p /workspace
 WORKDIR /workspace
-COPY pom.xml /workspace
-COPY src /workspace/src
+RUN "ls"
+COPY kanban-app/pom.xml /workspace
+COPY kanban-app/src /workspace/src
 RUN mvn -f pom.xml clean package
 
 FROM openjdk:8-alpine
