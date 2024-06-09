@@ -53,5 +53,5 @@ spec:
             memory: "1024Mi"
             cpu: "500m"
         
-      # imagePullSecrets:
-      # - name: openinnovationai-image-pull-secret
+      imagePullSecrets:
+      - name: openinnovationai-image-pull-secret
