@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: backend
+      annotations:
+        {{- with .Values.annotations.deployment }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       serviceAccountName: backend
       affinity:
@@ -41,6 +45,13 @@ spec:
           value: {{ .Values.postgresql.auth.username }}
         - name: POSTGRES_PASSWORD
           value: {{ .Values.postgresql.auth.password }}
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
         
-      imagePullSecrets:
-      - name: openinnovationai-image-pull-secret
+      # imagePullSecrets:
+      # - name: openinnovationai-image-pull-secret
